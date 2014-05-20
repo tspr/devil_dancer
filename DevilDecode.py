@@ -87,9 +87,26 @@ def get_V2(data):
 
 filehdl = open('./DV data stream.txt','r')
 for line in filehdl:
-    print 'Line : ' , line
-    hexdata=binascii.hexlify(line)
-    print ' Serial : ',  serialfromraw(hexdata[0:2])
+    if len(line)>= 56:    
+        print 'Line : ' , line
+        hd=bytearray.fromhex(line.split('\r')[0])
+        print ' Serial : ',  serialfromraw(hd[0:2])
+        print ' Temp : ', get_Temp(hd)
+        print ' E1 : ', get_E1(hd)
+        print ' C1 : ', get_C1(hd)
+        print ' Q1 : ', get_Q1(hd)
+        print ' F1 : ', get_F1(hd)
+        print ' E2 : ', get_E2(hd)
+        print ' C2 : ', get_C2(hd)
+        print ' Q2 : ', get_Q2(hd)
+        print ' F2 : ', get_F2(hd)
+        print ' K : ', get_K(hd)
+        print ' D : ', get_D(hd)
+        print ' V1 : ', get_V1(hd)
+        print ' V2 : ', get_V2(hd)
+        print ''
+        print '-------------'
+        print''
 filehdl.close()
 
 print "ende"

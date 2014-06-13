@@ -25,7 +25,6 @@ CARBON_SERVER = '141.62.68.180'
 CARBON_PORT = 2003
 WPATH=getcwd()
 logfilename=WPATH + '/sengenuity_logger.log'
-print logfilename
 logging.basicConfig(filename=logfilename,
                             level=logging.INFO,
                             format='%(asctime)s: %(levelname)s: %(message)s',
@@ -103,7 +102,6 @@ class viscomess():
             self.ser.write(':10,A\r\n')
             sleep(0.5)
             raw= self.ser.readline(self.ser.inWaiting()).rstrip('\x00\r\n').lstrip('\x00')
-            print raw
             logging.info('read: ' + str(raw.split(',')))
             tnow=int(time.time())
             if self.csvstatus:
